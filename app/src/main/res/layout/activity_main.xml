@@ -7,22 +7,43 @@
     android:orientation="vertical"
     tools:context="com.xrd.photopicture.MainActivity">
 
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="top"
+        android:minLines="4"
+        android:text=""
+        android:textColor="#333333"
+        android:textSize="14sp" />
+
     <EditText
         android:id="@+id/et_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:background="@null"
+        android:gravity="left|top"
+        android:hint="说一说..."
+        android:lineSpacingMultiplier="1.2"
         android:maxLines="5"
         android:minLines="4"
-        android:hint="说一说..."
-        android:gravity="left|top"
-        android:textSize="14sp"
-        android:lineSpacingMultiplier="1.2"
         android:textCursorDrawable="@null"
-        android:layout_margin="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:textSize="14sp" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/nsrv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
+    <Button
+        android:id="@+id/bt_submit"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/colorPrimary"
+        android:text="提交"
+        android:textColor="#fff"
+        android:textSize="16sp" />
 </LinearLayout>

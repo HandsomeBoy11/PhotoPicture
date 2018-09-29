@@ -4,16 +4,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 import me.iwf.photopicker.PhotoPicker;
 
@@ -23,9 +25,13 @@ public class MainActivity extends AppCompatActivity {
     EditText etText;
     @BindView(R.id.nsrv)
     RecyclerView nsrv;
+    @BindView(R.id.tv)
+    TextView tv;
+    @BindView(R.id.bt_submit)
+    Button btSubmit;
     private Unbinder bind;
     private MyAdapter myAdapter;
-    private ArrayList<String> pics=new ArrayList<>();
+    private ArrayList<String> pics = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void addPic() {
                 PhotoPicker.builder()
-                        .setPhotoCount(9-myAdapter.getRellPicSize())
+                        .setPhotoCount(9 - myAdapter.getRellPicSize())
                         .setShowCamera(true)
                         .setShowGif(true)
                         .setPreviewEnabled(false)
@@ -61,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void enterBigPic(Context mContext, View view, int position) {
-                BigPicActivity.startAct(mContext,view,pics,position);
+                BigPicActivity.startAct(mContext, view, pics, position);
             }
         });
     }
@@ -74,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
             if (data != null) {
                 ArrayList<String> photos =
                         data.getStringArrayListExtra(PhotoPicker.KEY_SELECTED_PHOTOS);
-                if(photos.size()>0){
+                if (photos.size() > 0) {
                     pics.addAll(photos);
                     myAdapter.setPicture(pics);
                 }
@@ -86,5 +92,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         bind.unbind();
+    }
+
+    @OnClick(R.id.bt_submit)
+    public void onViewClicked() {
+        String msg = etText.getText().toString().trim();
+        tv.setText(msg) ;
     }
 }
